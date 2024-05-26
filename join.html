@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ZUYCraft-加入方式</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/old.css">
+  <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+  <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+  <body>
+    <div class="header">
+      <img class="logo"  src="/photo/zuymcs.png" alt="Logo">
+    </div>
+
+    </header>
+    <section style="margin-top:100px;">      
+      <main>
+        <section id="introduction">
+          <h2>加入我们</h2>
+          <p>选择一个加入QQ群的方式</p>
+          <a href="https://qm.qq.com/q/1H9v3FwMda" class="button">一键加群</a>
+          <mdui-dialog
+            headline="复制以下群号前往QQ搜索添加"
+            description="215040119"
+            close-on-overlay-click
+            class="example-headline"
+          ></mdui-dialog>
+
+          <mdui-button variant="tonal">复制群号</mdui-button>
+
+<script>
+  const dialog = document.querySelector(".example-headline");
+  const openButton = dialog.nextElementSibling;
+
+  openButton.addEventListener("click", () => dialog.open = true);
+</script>
+
+
+<script>
+    // 监听消息事件，调整iframe高度
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'iframeHeight') {
+            document.getElementById('nested-iframe').style.height = event.data.height + 'px';
+        }
+    });
+
+    // 监听消息事件，调整iframe尺寸
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'iframeSize') {
+            const iframeId = event.data.iframeId;
+            const width = event.data.width;
+            const height = event.data.height;
+            document.getElementById(iframeId).style.width = width + 'px';
+            document.getElementById(iframeId).style.height = height + 'px';
+        }
+    });
+
+    // 获取一言数据
+    fetch('https://v1.hitokoto.cn/?max_length=12')
+        .then(response => response.json())
+        .then(data => {
+            const hitokoto = document.querySelector('#hitokoto_text');
+            hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`;
+            hitokoto.innerText = data.hitokoto;
+        })
+        .catch(console.error);
+</script>
+          
+
+        </section>
+    </section> 
+    <section style="margin-top:500px;">      
+      </main>
+      <iframe id="nested-iframe" src="footer.html" frameborder="0" scrolling="auto"></iframe>
+  </body>
+</html>
